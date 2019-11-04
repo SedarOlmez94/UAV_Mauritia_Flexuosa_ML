@@ -4,13 +4,13 @@ This repository contains code that was used to develop a RCNN model with a custo
 
 
 # TO RUN
+- Download the model code [here](https://drive.google.com/file/d/1dUQ7oZ82xDZMewpBd4rheEeGKY1K-oj9/view?usp=sharing)
 - Install the packages in the `requirements.txt` specifically `tensorflow 1.5`.
 - Execute the `object_detection_test.ipynb` to run the pretrained model we created.
 
 
 # TO BUILD YOUR OWN MODEL
-Download the tensorflow/models/research/object_detection api:
-github.com/tensorflow/models (CLONE THE REPO)
+- Download our model code [here](https://drive.google.com/file/d/1dUQ7oZ82xDZMewpBd4rheEeGKY1K-oj9/view?usp=sharing)
 
 
 Packages and their corresponding versions to use when doing object_detection from the models/research/object_detection api
