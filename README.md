@@ -1,5 +1,6 @@
 # UAV_Mauritia_Flexuosa_ML
 This repository contains code that was used to develop a RCNN model with a custom dataset of Mauritia Flexuosa trees in Peru. The tensorflow object detection API was used, it can be found [here](https://github.com/tensorflow/models/tree/master/research/object_detection)
+![](live_detection.png)
 
 
 # TO RUN
@@ -214,3 +215,40 @@ python train.py --logtostderr -—train_dir=training/ —-pipeline_config_path=t
 
 
 If everything is set up correctly, i.e. the path variables and version of tensorflow for python 2.7 the model should soon start training, and in the terminal it should look like this:
+![](training.png)
+
+
+You allow the model to run longer if you have more data. I recommend letting the model run for roughly an hour and a half. Make sure that the loss= score goes down. We want it as close as possible to 0.
+
+Once you are done training the model. Hit **Ctrl + Z** (Unix bash) to end the training process. 
+
+Check the **/object_detection/training/** folder to see if a model.ckpt has been generated. This checkpoint file should have several digits in its name i.e. Mine had: model.ckpt-461.index the number 461 is the highest number of seconds spent during training. So note this number down for the next stage. 
+
+
+Now we need to generate the inference graph we run the bash command below in the /object_detection/ folder this should execute the **export_inference_graph.py** script;
+```
+python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-XXXX --output_directory inference_graph
+```
+
+
+Replace the **XXXX** with the number from **model.ckpt** in my case it’s 461. So it should be;
+```
+python export_inference_graph.py --input_type image_tensor --pipeline_config_path training/faster_rcnn_inception_v2_pets.config --trained_checkpoint_prefix training/model.ckpt-461 --output_directory inference_graph
+```
+
+
+Execute this command and it should take a few seconds to run. Once it finishes running, we should be able to see an inference_graph folder in object_detection 
+
+
+Now we can run our model using the **object_detection_test.ipynb** notebook. In cell 4 change the lines to;
+```
+MODEL_NAME = 'inference_graph'
+PATH_TO_FROZEN_GRAPH = MODEL_NAME + '/frozen_inference_graph.pb'
+PATH_TO_LABELS = ‘training/labelmap.pbtxt'
+```
+
+
+As we are running the jupyter notebook file in the /object_detection folder. We name our model inference_graph. We set the path to the labelmap which is within /training/ folder. 
+
+
+Now we can run the script and it should present a live webcam view. Put an object you are trying to detect I.e. in our case a cat or dog and it should tell is what it is and where in the view it is.
