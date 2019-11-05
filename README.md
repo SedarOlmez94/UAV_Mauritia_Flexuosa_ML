@@ -18,12 +18,12 @@ Packages and their corresponding versions to use when doing object_detection fro
 
 Make sure the following libraries are installed:
 ```
-python -m pip install --user **Cython**
-python -m pip install --user **contextlib2**
-python -m pip install --user **pillow**
-python -m pip install --user **lxml**
-python -m pip install --user **jupyter**
-python -m pip install --user **matplotlib**
+python -m pip install --user Cython
+python -m pip install --user contextlib2
+python -m pip install --user pillow
+python -m pip install --user lxml
+python -m pip install --user jupyter
+python -m pip install --user matplotlib
 ```
 
 Run the cocoapi installation process in the models/research folder (cloned above from github and saved somewhere locally.)
