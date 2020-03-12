@@ -110,7 +110,7 @@ ply==3.11
 prometheus-client==0.5.0
 prompt-toolkit==1.0.15
 protobuf==3.10.0
-psutil==5.6.3
+psutil==5.6.6
 psycopg2==2.7.5
 ptyprocess==0.6.0
 PyBrain==0.3
